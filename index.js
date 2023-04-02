@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
+console.log("Si va");
+
 const firebaseConfig = {
     apiKey: "AIzaSyAPTTf0XBGT8vgbzrGN3qxR6NHiiMIMZJk",
     authDomain: "pictionary-clone.firebaseapp.com",
