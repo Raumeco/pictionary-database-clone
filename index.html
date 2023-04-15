@@ -5,14 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./app.css">
     <script type="module" src="./index.js"></script>
 </head>
 <body>
-    <input type="text" name="inputPalabra" id="inputPalabra" placeholder="Nueva palabra">
-    <select name="categoria" id="selectCategorias"></select>
-    <button id="newPalabra">AÑADIR PALABRA</button><br><br>
-    <input type="text" name="inputCategoria" id="inputCategoria" placeholder="Nueva categoria">
-    <button id="newCategoria">AÑADIR CATEGORIA</button>
+    <div class="contenedor">
+        <div class="form">
+            <div class="row">
+                <div class="double-input">
+                    <input type="text" name="inputPalabra" id="inputPalabra" placeholder="Nueva palabra">
+                    <div class="separator"></div>
+                    <select name="categoria" id="selectCategorias"></select>
+                </div>
+                <div>
+                    <button class="btn btn-blue" id="newPalabra">Añadir</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <input type="text" name="inputCategoria" id="inputCategoria" placeholder="Nueva categoria">
+                <div class="py-0 px-2">
+                    <button class="btn btn-green" id="newCategoria">Añadir</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>

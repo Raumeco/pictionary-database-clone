@@ -1,0 +1,113 @@
+* {
+    font-family: 'Mulish', sans-serif;
+}
+
+body {
+    background-color: rgb(36, 50, 62);
+}
+
+.contenedor {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form .row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.double-input {
+    background-color: #fff;
+    display: flex;
+}
+
+.double-input input, select {
+    margin: 0;
+    border: 0;
+    padding: .6rem;
+}
+
+.double-input .separator {
+    max-width: 0px;
+    border-right: 1px solid rgb(212, 212, 212);
+}
+
+.double-input input {
+    flex-grow: 1;
+    border-radius: 10px 2px 2px 10px;
+}
+
+.double-input select {
+    border-radius: 2px 10px 10px 2px;
+}
+
+.double-input {
+    border-radius: 10px;
+}
+
+.double-input * {
+    flex-grow: 0;
+    transition: .2s;
+}
+
+.double-input *:focus {
+    z-index: 1;
+    outline: 2px solid rgb(114, 181, 236);
+}
+
+input {
+    transition: .2s;
+    margin: 0;
+    border: 0;
+    padding: .6rem;
+    border-radius: 10px;
+}
+
+input:focus {
+    z-index: 1;
+    outline: 2px solid rgb(84, 192, 76);
+}
+
+.row {
+    width: 80%;
+}
+
+.row div {
+    width: 100%;
+}
+
+.btn {
+    transition: .2s;
+    width: 100%;
+    padding: .4em;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+}
+
+.btn-blue {
+    background-color: #0d6efd;
+}
+
+.btn-green {
+    background-color: #198754;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn:active {
+    transform: scale(.95);
+}

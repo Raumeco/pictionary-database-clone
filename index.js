@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
 console.log("Si va");
 
@@ -44,11 +44,11 @@ async function getCategorias() {
     document.getElementById("selectCategorias").innerHTML = ""
     const querySnapshot = await getDocs(collection(db, "categorias"));
     querySnapshot.forEach((doc) => {
-        let nombre = doc.data().name
+        let nombre = doc.data().value
         let id = doc.id
         categorias.push({
             id: id,
-            name: nombre
+            value: nombre
         })
         document.getElementById("selectCategorias").innerHTML += `<option class="categoriaOption" value="${id}">${nombre}</option>`
     });
@@ -56,11 +56,17 @@ async function getCategorias() {
 
 document.getElementById("newCategoria").addEventListener("click", async function(e) {
     let name = document.getElementById("inputCategoria").value;
+    name = name.toUpperCase();
+    if(name == "") {
+        alert("No dejes vacío el input mongolito")
+        return
+    }
     try {
         let found = false;
         categorias.forEach(element => {
-            if(element.name.toLowerCase() === name.toLowerCase()) {
+            if(element.value.toLowerCase() === name.toLowerCase()) {
                 found = true;
+                alert("La categoría ya existe")
             }
         });
 
@@ -70,13 +76,13 @@ document.getElementById("newCategoria").addEventListener("click", async function
         };
         
         const docRef = await addDoc(collection(db, "categorias"), {
-            name: name
+            value: name
         });
         
         
         categorias.push({
             id: docRef.id,
-            name: name
+            value: name
         });
 
         document.getElementById("selectCategorias").innerHTML += `<option class="categoriaOption" value="${docRef.id}">${name}</option>`
@@ -89,7 +95,17 @@ document.getElementById("newCategoria").addEventListener("click", async function
 
 document.getElementById("newPalabra").addEventListener("click", async function(e) {
     let name = document.getElementById("inputPalabra").value;
+    name = name.toUpperCase();
+    if(name == "") {
+        alert("No dejes vacío el input mongolito")
+        return
+    }
     let categoria = document.getElementById("selectCategorias").value;
+    let existe = await checkWordExists(categoria, name)
+    if(existe) {
+        alert("Ya existe esta palabra en la categoria seleccionada")
+        return;
+    }
 
     try {        
         const docRef = await addDoc(collection(db, "palabras"), {
@@ -102,3 +118,11 @@ document.getElementById("newPalabra").addEventListener("click", async function(e
     }
     document.getElementById("inputPalabra").value = ""
 });
+
+
+async function checkWordExists(categoria, palabra) {
+    const palabrasRef = collection(db, "palabras");
+    const q = query(palabrasRef, where("value", "==", palabra), where("categoria", "==", categoria));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.empty == false
+}
